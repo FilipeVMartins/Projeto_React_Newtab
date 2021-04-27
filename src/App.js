@@ -1,25 +1,50 @@
-import logo from './logo.svg';
+import React from 'react';
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
+
+
+import logo from './logo.png';
+import UserListing from './pages/UserListing/UserListing';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+export default class App extends React.Component {
 
-export default App;
+  render() {
+    return (
+      <div className="App">
+        <BrowserRouter>
+          <header className="App-header">
+            <img src={logo} className="App-logo" alt="logo" />
+            <p>
+              Listagem de Usuários
+            </p>
+            <nav className="App-nav">
+              <Link to="/" className="App-link" >
+                Home
+              </Link>
+              <Link to="/UserListing" className="App-link" >
+                Usuários
+              </Link>
+            </nav>
+          </header>
+
+
+          <div className="App-content">
+            <Switch>
+              <Route path="/" exact={true} component="" />
+              <Route path="/UserListing" exact={true} component={UserListing} />
+               {/*  
+              <Route path="/Payment" exact={true} component="" />
+              <Route path="/PaymentReceipt" exact={true} component="" />
+              */}
+            </Switch>
+          </div>
+        
+          <footer className="App-footer">
+
+          </footer>
+
+        </BrowserRouter>
+      </div>
+    );
+  };
+};
