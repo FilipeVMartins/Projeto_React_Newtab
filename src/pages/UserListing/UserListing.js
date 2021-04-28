@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PageTitle from '../../components/PageTitle/PageTitle'
+
 import './UserListing.css';
 
 export default class UserListing extends React.Component {
@@ -17,15 +19,15 @@ export default class UserListing extends React.Component {
         })
         .then(response => response.json())
         .then((responseJson) => {
-
             this.setState({usersData:responseJson})
-            console.log(this.state.usersData)
         })
+
+        //window.addEventListener("scroll", (e) => console.log(e.target.scrollHeight)); //funcinou
     };
 
 
 
-
+    
 
 
   render() {
@@ -33,17 +35,40 @@ export default class UserListing extends React.Component {
 
     return (
     
-      <div className="App">
-          <p>asdasd</p>
-          <ul>
+      <div className="App-user-listing">
 
-        
+          <PageTitle title="Listagem de Usuários" />
+
+
+          <div className="user-list">
             {this.state.usersData.map( (user, index) => {
 
-                return (<li >aaaa</li>)
-            } )}
+                if (true){
 
-          </ul>
+                return (
+                    <div className="user-row" key={'user-row-' + index}>
+                        <div className="user-wrapper1">
+                            <div className="user-data-wrapper">
+                                <figure>
+                                    <img src={user.img} alt={"Foto do Usuário" + user.name} />
+                                </figure>
+
+                                <div className="user-data">
+                                    <div className="user-name">{user.name}</div>
+                                    <div className="user-id-username">ID: {user.id} - Username: {user.username}</div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button className="pay-button">Pagar</button>
+                            </div>
+                        </div>
+
+                    </div>
+                )}
+            })}
+
+          </div>
       </div>
 
 

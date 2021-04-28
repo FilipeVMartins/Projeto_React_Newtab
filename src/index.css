@@ -7,6 +7,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera*/
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox*/
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  /*overflow-x: hidden; 1- removed to sticky work, tested on new edge, chrome, opera and firefox*/
+  /*overflow: hidden;  2- added this to avoid app-header scroll, since page-content now has got its own scroll*/
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

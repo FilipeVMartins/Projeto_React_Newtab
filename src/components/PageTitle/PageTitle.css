@@ -1,0 +1,17 @@
+.page-title {
+    position: sticky;
+    top: -1px; /* in chrome inspector mobile view there were a 2px margin from top after scrolling*/
+    background-color: #373d48;
+    padding: 10px;
+    height: 5.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.page-title h2 {
+    margin: 0;
+    font-size: calc(14px + 1vmin);
+    color: #FFFFFF;
+}

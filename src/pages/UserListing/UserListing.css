@@ -1,0 +1,56 @@
+
+
+.user-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    /*top: 17.5vh; 5.5vh from page title + 12vh from app header */
+}
+
+
+.user-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    padding: 20px 5.6617vw ;
+    margin-top: 1px;
+    box-sizing: border-box;
+    background-image: linear-gradient(#31324F, #1F202E);
+    width: 100%;
+
+    color: #FFFFFF;
+}
+
+.user-row figure {
+    margin: 0;
+}
+
+.user-row figure img {
+    border-radius: 50%
+}
+
+.user-wrapper1 {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.user-data-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-data {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    font-size: calc(10px + 1vmin);
+    margin: 0px 15px;
+}
