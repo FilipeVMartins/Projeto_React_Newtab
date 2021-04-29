@@ -1,6 +1,8 @@
 import React from 'react';
 
 import PageTitle from '../../components/PageTitle/PageTitle'
+import PaymentModal from '../../components/PaymentModal/PaymentModal'
+import ClickButton from '../../components/ClickButton/ClickButton'
 
 import './UserListing.css';
 
@@ -57,6 +59,10 @@ export default class UserListing extends React.Component {
         });
 
     }
+
+    showPaymentModal (){
+        
+    }
     
 
 
@@ -77,7 +83,7 @@ export default class UserListing extends React.Component {
                 if (index < this.state.contentScrollIndex){
                     return (
                         <div className="user-row" key={'user-row-' + index}>
-                            <div className="user-wrapper1">
+                            <div className="user-wrapper">
                                 <div className="user-data-wrapper">
                                     <figure>
                                         <img src={user.img} alt={"Foto do Usuário" + user.name} />
@@ -90,7 +96,7 @@ export default class UserListing extends React.Component {
                                 </div>
 
                                 <div>
-                                    <button className="pay-button">Pagar</button>
+                                    <ClickButton classN="pay-button" onClickFunction={this.showPaymentModal()} displayText="Pagar" />
                                 </div>
                             </div>
                         </div>
@@ -98,6 +104,11 @@ export default class UserListing extends React.Component {
                 }
             })}
           </div>
+
+
+
+
+          <PaymentModal username="testeuser"></PaymentModal>
       </div>
 
 

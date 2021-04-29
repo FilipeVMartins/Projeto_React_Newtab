@@ -1,10 +1,11 @@
 .App-description-wrapper {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 1px;
     color: #FFFFFF;
-    height: 30vh;
+    height: calc(70vh - 1px);
     position: relative;
     box-sizing: border-box;
+    overflow: auto;
 }
 
 .App-description-title {
@@ -30,4 +31,5 @@
 .App-description-text p {
     margin: 0;
     max-width: 80%;
+    line-height: 26px;
 }
