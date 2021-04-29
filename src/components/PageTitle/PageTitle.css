@@ -2,11 +2,11 @@
     position: sticky;
     top: -1px; /* in chrome inspector mobile view there were a 2px margin from top after scrolling*/
     background-color: #373d48;
-    padding: 10px;
+    padding: 10px 5vw;
     height: 5.5vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     box-sizing: border-box;
 }
 
@@ -14,4 +14,31 @@
     margin: 0;
     font-size: calc(14px + 1vmin);
     color: #FFFFFF;
+}
+
+
+.page-title div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: calc(14px + 1vmin);
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+.page-title div:hover {
+    color: #cddb3a; /*cddb3a abb730*/
+    
+}
+
+.page-title div p {
+    margin: 0;
+}
+
+.page-title i {
+    font-size: calc(20px + 1vmin);
+    margin-left: 10px;
+    position: relative;
 }

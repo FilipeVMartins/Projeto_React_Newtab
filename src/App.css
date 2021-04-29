@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  cursor: default;
+  background-color: lightgray;
 }
 
 .App-logo {
@@ -32,14 +34,20 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #cddb3a;
   text-decoration: none;
   margin-left: 10px;
   transition: all .2s ease;
+  cursor: default;
 }
-.App-link:hover {
+.App-link:hover:not(.App-link-CurrentPage) {
   text-decoration: underline;
-  color: #cff3fd;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.App-link-CurrentPage {
+  color: #6b731e;
 }
 
 
@@ -49,7 +57,6 @@
 .App-content {
   width: 100vw;
   height: 75.5vh; /* 5.5vh from page-title + 70 vh from page-content */
-  overflow:auto;
   position: relative;
 
 }
