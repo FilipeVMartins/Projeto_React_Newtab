@@ -11,7 +11,7 @@ export default class UserListing extends React.Component {
     state = {
         usersData: [],
         contentScrollIndex: 6 // because it starts rendering 6 rows by default
-    }
+    };
 
     
     handleContentScroll = e => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route, NavLink} from 'react-router-dom';
+import {BrowserRouter, Switch, Route, NavLink, Redirect} from 'react-router-dom';
 
 
 import logo from './logo2.png';
@@ -9,12 +9,24 @@ import './App.css';
 
 export default class App extends React.Component {
 
+  state = {
+    firstLoading: true
+  }
+
+  async componentDidMount(){
+    
+    
+  };
+
 
   render() {
 
+    
     return (
       <div className="App">
         <BrowserRouter>
+        { this.state.firstLoading == true ? <Redirect to="/UserListing" /> : this.setState({firstLoading: false}) }
+
           <header className="App-header">
             <img src={logo} className="App-logo asda" alt="logo" />
             <h1 className="App-title">
