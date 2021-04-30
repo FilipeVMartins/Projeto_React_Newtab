@@ -1,3 +1,8 @@
 # Redirects from what the browser requests to what we serve
 /Home              /
 /UserListing       /
+/home              /
+/userlisting       /
+https://react-paymentsapp-filipevmartins-newtabacademy.netlify.app/UserListing      /
+https://react-paymentsapp-filipevmartins-newtabacademy.netlify.app/home             /
+/*    /index.html   200
