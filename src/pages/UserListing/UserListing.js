@@ -10,7 +10,13 @@ export default class UserListing extends React.Component {
 
     state = {
         usersData: [],
-        contentScrollIndex: 6 // because it starts rendering 6 rows by default
+        contentScrollIndex: 6, // because it starts rendering 6 rows by default
+        clickedUser: {
+            id: '',
+            name: '',
+            username: ''
+        },
+        paymentModalDisplay: 'none'
     };
 
     
@@ -25,7 +31,7 @@ export default class UserListing extends React.Component {
                 console.log(`end of scroll at scroll-index ${this.state.contentScrollIndex} rendering new users...`);
                 this.setState({contentScrollIndex: this.state.contentScrollIndex + 4 });
 
-                // call render function (i don't know if it's realy necessary, first time i did it, it seemed that i had to use it to render new scrollable elements upon 'contentScrollIndex' value change, but now i've tried to remove it and the render of new elements automatically happened)
+                // call render function (i don't know if it's really necessary, first time i did it, it seemed that i had to use it to render new scrollable elements upon 'contentScrollIndex' value change, but now i've tried to remove it and the render of new elements automatically happened)
                 // this.render();
             } else {
                 console.log(`end of scroll at scroll-index ${this.state.contentScrollIndex} there are no more users to be rendered...`);
@@ -36,6 +42,8 @@ export default class UserListing extends React.Component {
 
 
     async componentDidMount(){
+
+        console.log('user-listing page loaded')
         fetch('https://www.mocky.io/v2/5d531c4f2e0000620081ddce', {
             method: 'GET'
         })
@@ -58,11 +66,33 @@ export default class UserListing extends React.Component {
             behavior: 'smooth'
         });
 
-    }
+    };
 
-    showPaymentModal (){
-        
-    }
+    openPaymentModal (id, name, username){
+
+        console.log('payment modal opened');
+        this.setState({
+            clickedUser: {
+                id: id,
+                name: name,
+                username: username
+            },
+            paymentModalDisplay: 'block'
+        });
+    };
+
+    closePaymentModal = () => {
+
+        console.log('payment modal closed');
+        this.setState({
+            clickedUser: {
+                id: '',
+                name: '',
+                username: ''
+            },
+            paymentModalDisplay: 'none'
+        });
+    };
     
 
 
@@ -96,7 +126,7 @@ export default class UserListing extends React.Component {
                                 </div>
 
                                 <div>
-                                    <ClickButton classN="pay-button" onClickFunction={this.showPaymentModal()} displayText="Pagar" />
+                                    <ClickButton classN="pay-button" onClickFunction={ () => this.openPaymentModal(user.id, user.name, user.username) } displayText="Pagar" />
                                 </div>
                             </div>
                         </div>
@@ -108,7 +138,7 @@ export default class UserListing extends React.Component {
 
 
 
-          <PaymentModal username="testeuser"></PaymentModal>
+          <PaymentModal username={this.state.clickedUser.name} display={this.state.paymentModalDisplay} closeModal={this.closePaymentModal} ></PaymentModal>
       </div>
 
 
