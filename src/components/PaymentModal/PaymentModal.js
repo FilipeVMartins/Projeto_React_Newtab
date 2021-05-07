@@ -58,19 +58,31 @@ export default class PaymentModal extends React.Component {
 
         return inputValue
     }
+
+    printValidationMsg(body){
+        let validationFail = false
+
+        // hides small tags with validation messages
+        document.querySelector('#select-card-wrapper *:nth-child(1)').style.display = 'none';
+        document.querySelector('#input-value-wrapper *:nth-child(1)').style.display = 'none';
+
+        if (body.card_number == false){
+            document.querySelector('#select-card-wrapper *:nth-child(1)').style.display = 'block';
+            validationFail = true;
+        }
+
+        if (body.value == false){
+            document.querySelector('#input-value-wrapper *:nth-child(1)').style.display = 'block';
+            validationFail = true;
+        }
+        return validationFail;
+    }
     // end validations
 
 
     // payment form send
     sendPaymentRequest = (event) => {
         event.preventDefault();
-
-        // close payment modal
-        this.props.closeModal()
-
-        // clean payment modal form
-        document.querySelector("form").reset();
-
         console.log('sending payment request')
 
         let selectedCard = this.validateCard();
@@ -90,10 +102,14 @@ export default class PaymentModal extends React.Component {
 
 
         // validation fail messages
-        // console.log(body)
+        let validationFail = this.printValidationMsg(body);
+        if (validationFail == true) {
+            console.log('sending payment request failed')
+            return
+        }
 
-
-
+        // close payment modal
+        this.closeModal();
 
         // convert body object to string to be attached to the post request
         body = JSON.stringify( body );
@@ -110,6 +126,25 @@ export default class PaymentModal extends React.Component {
         })
     };
 
+    // function to restore modal form state every way it's closed
+    closeModal = () => {
+        this.props.closeModal();
+
+        // clean payment modal form after closing
+        document.querySelector("form").reset();
+
+        this.setState({submittedFormData: {
+            inputValue: '',
+            selectCard: ''
+        }});
+
+        // hides small tags with validation messages
+        document.querySelector('#select-card-wrapper *:nth-child(1)').style.display = 'none';
+        document.querySelector('#input-value-wrapper *:nth-child(1)').style.display = 'none';
+    }
+
+
+
     render() {
   
       return (
@@ -119,15 +154,17 @@ export default class PaymentModal extends React.Component {
 
                 <div className="modal-title">
                     <p>Pagamento para <span>{this.props.clickedUser.name}</span></p>
-                    <i className="fa fa-times-circle" aria-hidden="true" onClick={this.props.closeModal}></i>
+                    <i className="fa fa-times-circle" aria-hidden="true" onClick={this.closeModal}></i>
                 </div>
 
                 <div className="modal-body">
                     <form>
-                        <div>
+                        <div id="input-value-wrapper">
+                            <small>O campo abaixo é obrigatório</small>
                             <input type='number' placeholder="R$ 0,00" onChange={ event => this.setState(state => (state.submittedFormData.inputValue = event.target.value, state)) }></input>
                         </div>
-                        <div>
+                        <div id="select-card-wrapper">
+                            <small>O campo abaixo é obrigatório</small>
                             <select defaultValue="" onChange={ event => this.setState(state => (state.submittedFormData.selectCard = event.target.value, state)) } >
                                 <option value="" disabled hidden>Selecione um cartão</option>
                                 {this.state.availableCards.map( (card, index) => {

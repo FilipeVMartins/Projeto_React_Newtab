@@ -74,6 +74,12 @@
     margin-bottom: 30px;
 }
 
+.modal-body small {
+    color: red;
+    font-style: italic;
+    display: none;
+}
+
 
 
 
