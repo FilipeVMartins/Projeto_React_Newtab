@@ -2,6 +2,7 @@ import React from 'react';
 
 import PageTitle from '../../components/PageTitle/PageTitle'
 import PaymentModal from '../../components/PaymentModal/PaymentModal'
+import ReceiptMsgModal from '../../components/ReceiptMsgModal/ReceiptMsgModal'
 import ClickButton from '../../components/ClickButton/ClickButton'
 
 import './UserListing.css';
@@ -16,7 +17,14 @@ export default class UserListing extends React.Component {
             name: '',
             username: ''
         },
-        paymentModalDisplay: 'none'
+
+        paymentReceiptResponse: {
+            status:'',
+            success: ''
+        },
+
+        paymentModalDisplay: 'none',
+        receiptMsgModalDisplay: 'none'
     };
 
     
@@ -93,6 +101,35 @@ export default class UserListing extends React.Component {
             paymentModalDisplay: 'none'
         });
     };
+
+    openReceiptMsgModal(status, success){
+
+        console.log('receipt modal opened');
+        this.setState({
+            receiptMsgModalDisplay: 'block'
+        });
+    };
+
+    closeReceiptMsgModal = () => {
+
+        console.log('receipt modal closed');
+        this.setState({
+            paymentReceiptResponse: {
+                status:'',
+                success: ''
+            },
+            receiptMsgModalDisplay: 'none'
+        });
+    }
+
+    // function to recieve transaction receipt data from child payment component, also calls receipt modal
+    paymentReceiptCallback = (paymentReceiptResponse) => {
+        // passes the receipt data to this component state
+        this.setState({paymentReceiptResponse:paymentReceiptResponse})
+
+        this.openReceiptMsgModal();
+
+    };
     
 
 
@@ -138,7 +175,8 @@ export default class UserListing extends React.Component {
 
 
 
-          <PaymentModal clickedUser={this.state.clickedUser} display={this.state.paymentModalDisplay} closeModal={this.closePaymentModal} ></PaymentModal>
+          <PaymentModal clickedUser={this.state.clickedUser} display={this.state.paymentModalDisplay} closeModal={this.closePaymentModal} paymentReceiptCallback={this.paymentReceiptCallback}></PaymentModal>
+          <ReceiptMsgModal receipt={this.state.paymentReceiptResponse} display={this.state.receiptMsgModalDisplay} closeModal={this.closeReceiptMsgModal} ></ReceiptMsgModal>
       </div>
 
 

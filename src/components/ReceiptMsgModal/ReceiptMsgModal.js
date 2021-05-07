@@ -1,6 +1,8 @@
 import React from 'react';
 
-import './ConfirmationMsgModal.css';
+import ClickButton from '../../components/ClickButton/ClickButton'
+
+import './ReceiptMsgModal.css';
 
 export default class ReceiptMsgModal extends React.Component {
 
@@ -17,7 +19,10 @@ export default class ReceiptMsgModal extends React.Component {
                 </div>
 
                 <div className="modal-body">
-                    <p>{this.props.receiptMsg}</p>
+                    <p>O pagamento <span>{this.props.receipt.success == true ? '' : 'não'}</span> foi concluído com sucesso.</p>
+                    <div>
+                        <ClickButton classN="pay-button" type="button" displayText="Confirmar" onClickFunction={this.props.closeModal} />
+                    </div>
                 </div>
                 
             </div>

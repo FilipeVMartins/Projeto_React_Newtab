@@ -7,7 +7,7 @@ import './PaymentModal.css';
 export default class PaymentModal extends React.Component {
 
 
-    state ={
+    state = {
         availableCards: [
             {
             card_number: '1111111111111111',
@@ -65,6 +65,12 @@ export default class PaymentModal extends React.Component {
     sendPaymentRequest = (event) => {
         event.preventDefault();
 
+        // close payment modal
+        this.props.closeModal()
+
+        // clean payment modal form
+        document.querySelector("form").reset();
+
         console.log('sending payment request')
 
         let selectedCard = this.validateCard();
@@ -82,50 +88,27 @@ export default class PaymentModal extends React.Component {
             value: sentValue
         };
 
-        
 
-        console.log(body)
+        // validation fail messages
+        // console.log(body)
 
+
+
+
+        // convert body object to string to be attached to the post request
         body = JSON.stringify( body );
         
-
-/*
-
-
-
-        fetch('https://www.mocky.io/v2/5d531c4f2e0000620081ddce', {
+        // send payment post
+        fetch('https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989', {
             method: 'POST',
             body: body
         })
         .then(response => response.json())
-        .then((responseJson) => {
-            this.setState({usersData:responseJson})
+        .then((paymentReceiptResponse) => {
+            // send received json to parent component
+            this.props.paymentReceiptCallback(paymentReceiptResponse);
         })
-        */
-    }
-    
-
-    
-
-      //transaction
-      // https://run.mocky.io/v3/533cd5d7-63d3-4488-bf8d-4bb8c751c989
-
-      // Payload:
-/*
-    interface TransactionPayload {
-        // Card Info
-        card_number: string;
-        cvv: number;
-        expiry_date: string;
-    
-        // Destination User ID
-        destination_user_id: number;
-    
-        // Value of the Transaction
-        value: number;
-    } */
-
-
+    };
 
     render() {
   

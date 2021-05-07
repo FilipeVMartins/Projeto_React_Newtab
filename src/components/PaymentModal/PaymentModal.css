@@ -56,7 +56,7 @@
 .modal-body {
     display: flex;
     flex-direction: column;
-    padding: 50px 0px;
+    padding: 40px 0px;
 }
 
 .modal-body input, .modal-body select {
