@@ -1,15 +1,12 @@
-
-
-.payment-modal-wrapper {
+.receipt-modal-wrapper {
     position: absolute;
     height: 100vh;
     width: 100vw;
     top: -12vh;
-    display: none;
 }
 
 
-.payment-modal {
+.receipt-modal {
     position: absolute;
     top: 40%;  
     left: 50%; 
@@ -33,10 +30,9 @@
     margin: 0px;
     font-size: calc(14px + 1vmin);
     color: #FFFFFF;
-}
-
-.modal-title p span {
-    color: #cddb3a;
+    text-align: start;
+    padding: 0px 30px;
+    box-sizing: border-box;
 }
 
 .modal-title i {
@@ -59,43 +55,14 @@
     padding: 40px 0px;
 }
 
-.modal-body input, .modal-body select {
-    width: calc(162.85px + 25%);
-    border: 1px solid #d3d3d3;
-    padding: 5px 10px;
-    font-size: calc(8px + 1vmin);
+.modal-body p {
+    margin: 0px;
+    margin-bottom: 40px;
 }
 
-.modal-body input {
-    margin-bottom: 20px;
+.modal-body p span {
+    font-weight: bold;
 }
-
-.modal-body select {
-    margin-bottom: 30px;
-}
-
-.modal-body small {
-    color: red;
-    font-style: italic;
-    display: none;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .screen-block {
     position: absolute;

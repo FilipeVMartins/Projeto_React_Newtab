@@ -32,6 +32,7 @@
 .App-nav{
   padding: 10px;
   display: flex;
+  justify-content: flex-end;
   flex-direction: row;
   flex-wrap: wrap;
 }
