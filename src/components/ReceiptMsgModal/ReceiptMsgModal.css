@@ -1,0 +1,86 @@
+.receipt-modal-wrapper {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    top: -12vh;
+    display: none;
+}
+
+
+.receipt-modal {
+    position: absolute;
+    top: 40%;  
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: calc(192.85px + 30%);
+    height: auto;
+    z-index: 2;
+    background-color: #FFFFFF;
+    box-shadow: black 0px 20px 30px -10px;
+    box-sizing: border-box;
+
+}
+
+.modal-title {
+    background-color: #474971;
+    font-weight: normal;
+    padding: 25px 0px;
+}
+
+.modal-title p {
+    margin: 0px;
+    font-size: calc(14px + 1vmin);
+    color: #FFFFFF;
+}
+
+.modal-title p span {
+    color: #cddb3a;
+}
+
+.modal-title i {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #FFFFFF;
+    font-size: calc(20px + 1vmin);
+    margin: 5px;
+    cursor: pointer;
+}
+
+.modal-title i:hover {
+    color: #cddb3a;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    padding: 50px 0px;
+}
+
+.modal-body input, .modal-body select {
+    width: calc(162.85px + 25%);
+    border: 1px solid #d3d3d3;
+    padding: 5px 10px;
+    font-size: calc(8px + 1vmin);
+}
+
+.modal-body input {
+    margin-bottom: 20px;
+}
+
+.modal-body select {
+    margin-bottom: 30px;
+}
+
+
+
+
+
+
+.screen-block {
+    position: absolute;
+    height: 100vh;
+    width: 100vw;
+    background-color: #333333;
+    opacity: 0.5;
+}

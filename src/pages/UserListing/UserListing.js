@@ -138,7 +138,7 @@ export default class UserListing extends React.Component {
 
 
 
-          <PaymentModal username={this.state.clickedUser.name} display={this.state.paymentModalDisplay} closeModal={this.closePaymentModal} ></PaymentModal>
+          <PaymentModal clickedUser={this.state.clickedUser} display={this.state.paymentModalDisplay} closeModal={this.closePaymentModal} ></PaymentModal>
       </div>
 
 
