@@ -130,9 +130,8 @@ export default class PaymentModal extends React.Component {
     closeModal = () => {
         this.props.closeModal();
 
+        // document.querySelector("form").reset(); //not needed after setting the component controlled by value
         // clean payment modal form after closing
-        document.querySelector("form").reset();
-
         this.setState({submittedFormData: {
             inputValue: '',
             selectCard: ''
@@ -143,7 +142,31 @@ export default class PaymentModal extends React.Component {
         document.querySelector('#input-value-wrapper *:nth-child(1)').style.display = 'none';
     }
 
+    //function to apply mask and set state, after state is set react will re-write the input value. event variable is send automatically.
+    inputValueChange = (event) => {
+        //console.log(event.target.value)
 
+        // only allows numbers
+        let value = event.target.value.replace(/\D/g,'');
+
+        this.setState(state => (state.submittedFormData.inputValue = value, state))
+    }
+
+
+
+    addstr (strA, strB, position) {
+        let output;
+    
+        //falta limitar a entrada de position e verificar parametros obrigatorios
+    
+        if (position < 0){
+            output = [strA.slice(0, strA.length+1+position), strB, strA.slice(strA.length+1+position, strA.length)].join('');
+        } else {
+            output = [strA.slice(0, position), strB, strA.slice(position)].join('');
+        };
+    
+        return output;
+    };
 
     render() {
   
@@ -161,11 +184,11 @@ export default class PaymentModal extends React.Component {
                     <form>
                         <div id="input-value-wrapper">
                             <small>O campo abaixo é obrigatório</small>
-                            <input type='number' placeholder="R$ 0,00" onChange={ event => this.setState(state => (state.submittedFormData.inputValue = event.target.value, state)) }></input>
+                            <input type='text' value={this.state.submittedFormData.inputValue} placeholder="R$ 0,00" onChange={ this.inputValueChange }></input>
                         </div>
                         <div id="select-card-wrapper">
                             <small>O campo abaixo é obrigatório</small>
-                            <select defaultValue="" onChange={ event => this.setState(state => (state.submittedFormData.selectCard = event.target.value, state)) } >
+                            <select value={this.state.submittedFormData.selectCard} onChange={ event => this.setState(state => (state.submittedFormData.selectCard = event.target.value, state)) } >
                                 <option value="" disabled hidden>Selecione um cartão</option>
                                 {this.state.availableCards.map( (card, index) => {
                                     return (
