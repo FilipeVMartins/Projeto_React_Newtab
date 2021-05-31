@@ -179,6 +179,10 @@ export default class PaymentModal extends React.Component {
             value = this.addstr (value, 'R$ ', 0);
         }
 
+        if (value === 'R$ 0,00'){
+            value = '';
+        }
+
         this.setState(state => (state.submittedFormData.inputValue = value, state))
     }
 
