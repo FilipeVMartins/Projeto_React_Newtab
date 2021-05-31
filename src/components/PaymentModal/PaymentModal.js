@@ -144,10 +144,40 @@ export default class PaymentModal extends React.Component {
 
     //function to apply mask and set state, after state is set react will re-write the input value. event variable is send automatically.
     inputValueChange = (event) => {
-        //console.log(event.target.value)
 
-        // only allows numbers
-        let value = event.target.value.replace(/\D/g,'');
+        // only allows numbers, ',' and '.'
+        let value = event.target.value.replace(/[^\d]/g,'');
+
+        if (value.length > 2){
+            value = this.addstr (value, ',', -3);
+        } else 
+
+        if (value.length === 1){
+            value = this.addstr (value, '0,0', -2);
+        } else
+
+        if (value.length === 2){
+            value = this.addstr (value, '0,', -3);
+        }
+        
+        while (value[0]==='0' && value.length > 4) {
+            value = value.slice(0, 0) + value.slice(0+1);
+        }
+
+        let integers=0
+        for (let i=value.length-4 ; i>=0 ; i--){
+            integers = integers+1
+            if(integers === 4){
+                //console.log('index: ', i, 'character: ', value[i])
+                value = this.addstr (value, '.', i+1);
+                integers = 1;
+            }
+        };
+
+        console.log(value)
+        if (value.length > 0){
+            value = this.addstr (value, 'R$ ', 0);
+        }
 
         this.setState(state => (state.submittedFormData.inputValue = value, state))
     }
