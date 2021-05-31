@@ -25,7 +25,7 @@ export default class App extends React.Component {
     return (
       <div className="App">
         <BrowserRouter>
-        { this.state.firstLoading == true ? <Redirect to="/UserListing" /> : this.setState({firstLoading: false}) }
+        { this.state.firstLoading === true ? <Redirect to="/UserListing" /> : this.setState({firstLoading: false}) }
 
           <header className="App-header">
             <img src={logo} className="App-logo asda" alt="logo" />

@@ -41,7 +41,7 @@ export default class PaymentModal extends React.Component {
         // validate inputed card
         this.state.availableCards.forEach( (card) => {
             // check if there is any card with the informed final digits, if yes then return its full value
-            if (card.card_number.substr(-4) == this.state.submittedFormData.selectCard ) {
+            if (card.card_number.substr(-4) === this.state.submittedFormData.selectCard ) {
                 selectedCard = card;
             }
         });
@@ -52,7 +52,7 @@ export default class PaymentModal extends React.Component {
         let inputValue = this.state.submittedFormData.inputValue
 
         // value to be sent can not be empty
-        if (inputValue == '' || inputValue == undefined){
+        if (inputValue === '' || inputValue === undefined){
             inputValue = false
         }
 
@@ -66,12 +66,12 @@ export default class PaymentModal extends React.Component {
         document.querySelector('#select-card-wrapper *:nth-child(1)').style.display = 'none';
         document.querySelector('#input-value-wrapper *:nth-child(1)').style.display = 'none';
 
-        if (body.card_number == false){
+        if (body.card_number === false){
             document.querySelector('#select-card-wrapper *:nth-child(1)').style.display = 'block';
             validationFail = true;
         }
 
-        if (body.value == false){
+        if (body.value === false){
             document.querySelector('#input-value-wrapper *:nth-child(1)').style.display = 'block';
             validationFail = true;
         }
@@ -103,7 +103,7 @@ export default class PaymentModal extends React.Component {
 
         // validation fail messages
         let validationFail = this.printValidationMsg(body);
-        if (validationFail == true) {
+        if (validationFail === true) {
             console.log('sending payment request failed')
             return
         }
@@ -159,7 +159,7 @@ export default class PaymentModal extends React.Component {
         if (value.length === 2){
             value = this.addstr (value, '0,', -3);
         }
-        
+
         while (value[0]==='0' && value.length > 4) {
             value = value.slice(0, 0) + value.slice(0+1);
         }
